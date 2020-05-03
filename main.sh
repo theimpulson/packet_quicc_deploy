@@ -6,7 +6,7 @@
 BASEDIR=$(dirname "$0")
 for user in $(ls $BASEDIR/keys); do
   useradd -m $user
-  usermod -aG sudo $user 
+  usermod -aG sudo $user
   chsh -s /bin/bash $user
   cp -R $BASEDIR/keys/$user/. /home/$user/
   chown -R $user:$user /home/$user
@@ -41,19 +41,12 @@ mount /dev/md/build /raid
 RAID_UUID=$(blkid -s UUID -o value /dev/md/build)
 echo -e "UUID=${RAID_UUID}\t/raid\text4\trw,relatime,defaults\t0\t1" >> /etc/fstab
 
-chown -R jenkins:jenkins /raid
+chown -R theimpulson:theimpulson /raid
 
 # Android build env setup
-git config --global user.email "botatosalad@deletescape.ch"
-git config --global user.name "Botato Salad"
+git config --global user.email "aayushgupta219@gmail.com"
+git config --global user.name "Aayush Gupta"
 git clone https://github.com/AgentFabulous/scripts ~/.android-scripts
 cd ~/.android-scripts
 bash setup/android_build_env.sh
 cd -
-
-# Update CloudFlare DNS records
-$BASEDIR/cloudflare-update.sh "$@"
-
-# Cleanup
-rm -rf ~/.android-scripts
-rm -rf ~/.setup-scripts
