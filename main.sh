@@ -46,7 +46,3 @@ chown -R theimpulson:theimpulson /raid
 # Android build env setup
 git config --global user.email "aayushgupta219@gmail.com"
 git config --global user.name "Aayush Gupta"
-git clone https://github.com/AgentFabulous/scripts ~/.android-scripts
-cd ~/.android-scripts
-bash setup/android_build_env.sh
-cd -
